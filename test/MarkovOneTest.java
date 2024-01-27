@@ -1,3 +1,4 @@
+import edu.duke.FileResource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +23,13 @@ class MarkovOneTest {
         assertEquals(result, markovOne.getFollows("t"));
         System.out.println(markovOne.getFollows("t"));
 
+    }
+    @Test
+    void getFollowsTestWithFile() {
+        FileResource fr = new FileResource("C:/Users/Asa/Documents/Code/Coursera/GeneratingRandomText/data/confucius.txt");
+        String st = fr.asString();
+        markovOne.setTraining(st);
+        assertEquals(11548, markovOne.getFollows("t").size());
+        System.out.println(markovOne.getFollows("t").size());
     }
 }
