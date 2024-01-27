@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MarkovOneTest {
     MarkovOne markovOne;
-    String myText;
+
     @BeforeEach
     void setup() {
         markovOne = new MarkovOne();
@@ -20,6 +20,7 @@ class MarkovOneTest {
         ArrayList<String> result = new ArrayList<>(Arrays.asList("h", "e", " ", "h", "e", "."));
         markovOne.setTraining(myText);
         assertEquals(result, markovOne.getFollows("t"));
+        System.out.println(markovOne.getFollows("t"));
 
     }
 }
