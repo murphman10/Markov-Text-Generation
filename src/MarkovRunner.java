@@ -17,7 +17,7 @@ public class MarkovRunner {
         String st = fr.asString();
         st = st.replace('\n', ' ');
         MarkovOne markov = new MarkovOne();
-        markov.setRandom(101);
+        markov.setRandom(42);
         markov.setTraining(st);
         for (int k = 0; k < 3; k++) {
             String text = markov.getRandomText(500);
@@ -28,7 +28,7 @@ public class MarkovRunner {
         String[] words = s.split("\\s+");
         int psize = 0;
         System.out.println("----------------------------------");
-        for (int k = 0; k < words.length; k++) {
+        for(int k = 0; k < words.length; k++) {
             System.out.print(words[k] + " ");
             psize += words[k].length() + 1;
             if (psize > 60) {
@@ -41,8 +41,7 @@ public class MarkovRunner {
 
     public static void main(String[] args) {
         MarkovRunner mr = new MarkovRunner();
-        String t ="this is a test yes this is a test.";
-
+        mr.runMarkovZero();
         mr.runMarkovOne();
     }
 

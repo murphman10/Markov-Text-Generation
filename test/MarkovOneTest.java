@@ -32,4 +32,17 @@ class MarkovOneTest {
         assertEquals(11548, markovOne.getFollows("t").size());
         System.out.println(markovOne.getFollows("t").size());
     }
+
+    @Test
+    void getRandomTextTest() {
+        FileResource fr = new FileResource("C:/Users/Asa/Documents/Code/Coursera/GeneratingRandomText/data/confucius.txt");
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+        markovOne.setRandom(42);
+        markovOne.setTraining(st);
+        String result = markovOne.getRandomText(500);
+        System.out.println(result);
+        assertEquals("nd are,  Prevedowalvism n thastsour tr ndsang  heag ti. the ffinthe", result.substring(0, 67));
+
+    }
 }
