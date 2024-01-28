@@ -1,33 +1,36 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-
-public class MarkovOne {
+public class MarkovModel {
     private String myText;
     private Random myRandom;
 
-    public MarkovOne() {
+    public MarkovModel() {
+
         myRandom = new Random();
     }
 
     public void setRandom(int seed){
+
         myRandom = new Random(seed);
     }
 
     public void setTraining(String s){
+
         myText = s.trim();
     }
 
-    public String getRandomText(int numChars){
+    public String getRandomText(int numChars, int n){
+
         if (myText == null){
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        int index = myRandom.nextInt(myText.length() - 1);
-        String key = myText.substring(index, index+1);
+        int index = myRandom.nextInt(myText.length() - n);
+        String key = myText.substring(index, index + n);
         sb.append(key);
 
-        for(int k = 0; k < numChars - 1; k++) {
+        for(int k = 0; k < numChars - n; k++) {
             ArrayList<String> follows = getFollows(key);
             if (follows.isEmpty()) {
                 break;
@@ -35,13 +38,13 @@ public class MarkovOne {
             index = myRandom.nextInt(follows.size());
             String next = follows.get(index);
             sb.append(next);
-            key = next;
+            key = key.substring(1) + next;
         }
 
         return sb.toString();
     }
 
-    public ArrayList<String> getFollows(String key) {
+    public ArrayList<String> getFollows(String key) { // works only for markovOne
         ArrayList<String> listChar = new ArrayList<>();
         int pos = 0;
         while (pos < myText.length()) {

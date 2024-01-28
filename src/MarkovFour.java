@@ -42,7 +42,7 @@ public class MarkovFour {
         return sb.toString();
     }
 
-    public ArrayList<String> getFollows(String key) { // works only for markovOne
+    public ArrayList<String> getFollows(String key) {
         ArrayList<String> listChar = new ArrayList<>();
         int pos = 0;
         while (pos < myText.length()) {

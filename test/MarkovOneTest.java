@@ -26,7 +26,7 @@ class MarkovOneTest {
     }
     @Test
     void getFollowsTestWithFile() {
-        FileResource fr = new FileResource("C:/Users/Asa/Documents/Code/Coursera/GeneratingRandomText/data/confucius.txt");
+        FileResource fr = new FileResource("C:/Users/Asa/Documents/Code/Coursera/GeneratingRandomText/data/melville.txt");
         String st = fr.asString();
         markovOne.setTraining(st);
         assertEquals(11548, markovOne.getFollows("t").size());
