@@ -1,33 +1,41 @@
+package com.coursera.MarkovOld;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-
-public class MarkovOne {
+public class MarkovModel {
     private String myText;
     private Random myRandom;
+    private int n;
+    public MarkovModel() {
 
-    public MarkovOne() {
         myRandom = new Random();
+    }
+    public void setN(int n) {
+        this.n = n;
     }
 
     public void setRandom(int seed){
+
         myRandom = new Random(seed);
     }
 
     public void setTraining(String s){
+
         myText = s.trim();
     }
 
     public String getRandomText(int numChars){
+
         if (myText == null){
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        int index = myRandom.nextInt(myText.length() - 1);
-        String key = myText.substring(index, index+1);
+        int index = myRandom.nextInt(myText.length() - n);
+        String key = myText.substring(index, index + n);
         sb.append(key);
 
-        for(int k = 0; k < numChars - 1; k++) {
+        for(int k = 0; k < numChars - n; k++) {
             ArrayList<String> follows = getFollows(key);
             if (follows.isEmpty()) {
                 break;
@@ -35,7 +43,7 @@ public class MarkovOne {
             index = myRandom.nextInt(follows.size());
             String next = follows.get(index);
             sb.append(next);
-            key = next;
+            key = key.substring(1) + next;
         }
 
         return sb.toString();

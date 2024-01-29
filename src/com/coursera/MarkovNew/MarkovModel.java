@@ -1,26 +1,26 @@
+package com.coursera.MarkovNew;
+
+import com.coursera.Interfaces.IMarkovModel;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MarkovModel {
-    private String myText;
-    private Random myRandom;
-
-    public MarkovModel() {
+public class MarkovModel extends AbstractMarkovModel {
+    private int n;
+    public MarkovModel(int num) {
 
         myRandom = new Random();
+        n = num;
     }
-
     public void setRandom(int seed){
 
         myRandom = new Random(seed);
     }
-
     public void setTraining(String s){
 
         myText = s.trim();
     }
-
-    public String getRandomText(int numChars, int n){
+    public String getRandomText(int numChars){
 
         if (myText == null){
             return "";
@@ -43,18 +43,6 @@ public class MarkovModel {
 
         return sb.toString();
     }
+    public String toString() { return "MarkovModel of order " + n;}
 
-    public ArrayList<String> getFollows(String key) { // works only for markovOne
-        ArrayList<String> listChar = new ArrayList<>();
-        int pos = 0;
-        while (pos < myText.length()) {
-            int start = myText.indexOf(key, pos);
-            if(start == -1) break;
-            if(start + key.length() >= myText.length() - 1) break;
-            String next = myText.substring(start + key.length(), start + key.length() + 1);
-            listChar.add(next);
-            pos = start + key.length(); // + 1 might be useful in the future
-        }
-        return listChar;
-    }
 }

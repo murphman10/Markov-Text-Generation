@@ -1,3 +1,5 @@
+package com.coursera.MarkovOld;
+
 import edu.duke.*;
 public class MarkovRunner {
     public void runMarkovZero() {
@@ -46,8 +48,9 @@ public class MarkovRunner {
         MarkovModel markov = new MarkovModel();
         markov.setRandom(365);
         markov.setTraining(st);
+        markov.setN(8);
         for (int k = 0; k < 3; k++) {
-            String text = markov.getRandomText(500, 8);
+            String text = markov.getRandomText(500);
             printOut(text);
         }
     }
