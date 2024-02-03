@@ -7,6 +7,7 @@ package com.coursera.MarkovNew;
  */
 
 import com.coursera.Interfaces.IMarkovModel;
+import com.coursera.MarkovEfficient.EfficientMarkovModel;
 import edu.duke.FileResource;
 
 public class MarkovRunnerWithInterface {
@@ -41,6 +42,17 @@ public class MarkovRunnerWithInterface {
 
     }
 
+	public void testHashMap() {
+
+		String st = "yes-this-is-a-thin-pretty-pink-thistle";
+		//st = st.replace('\n', ' ');
+		int size = 50;
+		int sd = 42;
+
+		EfficientMarkovModel emm = new EfficientMarkovModel(3);
+		runModel(emm,st, size, sd);
+	}
+
 	private void printOut(String s){
 		String[] words = s.split("\\s+");
 		int psize = 0;
@@ -57,7 +69,7 @@ public class MarkovRunnerWithInterface {
 	}
 	public static void main(String[] args) {
 		MarkovRunnerWithInterface mri = new MarkovRunnerWithInterface();
-		mri.runMarkov();
+		mri.testHashMap();
 	}
 	
 }
