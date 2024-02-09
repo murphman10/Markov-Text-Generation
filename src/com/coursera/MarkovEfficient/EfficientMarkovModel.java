@@ -19,6 +19,30 @@ public class EfficientMarkovModel extends AbstractMarkovModel {
         printHashMapInfo();
     }
 
+    @Override
+    public String getRandomText(int numChars) {
+        if (myText == null){
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int index = myRandom.nextInt(myText.length() - n);
+        String key = myText.substring(index, index + n);
+        sb.append(key);
+
+        for(int k = 0; k < numChars - n; k++) {
+            ArrayList<String> follows = getFollows(key);
+            if (follows.isEmpty()) {
+                break;
+            }
+            index = myRandom.nextInt(follows.size());
+            String next = follows.get(index);
+            sb.append(next);
+            key = key.substring(1) + next;
+        }
+
+        return sb.toString();
+    }
+
     private HashMap<String,ArrayList<String>> buildMap() {
         HashMap<String, ArrayList<String>> mapper = new HashMap<>();
         return mapper;
