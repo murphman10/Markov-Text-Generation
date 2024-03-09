@@ -15,30 +15,50 @@ public abstract class AbstractMarkovModel implements IMarkovModel {
     protected Random myRandom;
     protected int n;
     
-    public AbstractMarkovModel() {}
-
-    public void setRandom(int seed){
-        myRandom = new Random(seed);
+    public AbstractMarkovModel(int n) {
+        myRandom = new Random();
+        this.n = n;
     }
-    
+
     public void setTraining(String s) {
         myText = s.trim();
     }
 
+    public void setRandom(int seed){
+        myRandom.setSeed(seed);
+    }
+
+    //abstract public String getRandomText(int numChars);
+
+    private boolean matchKey(String key, int pos) {
+        return key.equals(myText.substring(pos, pos + n));
+    }
+
+    private String getFollowingLetter(int pos) {
+        int index = pos + n;
+        return myText.substring(index, index + 1);
+    }
+
+    public ArrayList<String> getFollows(String key) {
+
+        ArrayList<String> follows = new ArrayList<String>();
+
+        for (int i = 0; i < myText.length() - n; i++) {
+            // if found key, add letter after the key to the list
+            // key length = order
+            if (matchKey(key, i))
+                follows.add(getFollowingLetter(i));
+        }
+
+        return follows;
+
+    }
+
     abstract public String getRandomText(int numChars);
 
-    protected ArrayList<String> getFollows(String key) {
-        ArrayList<String> listChar = new ArrayList<>();
-        int pos = 0;
-        while (pos < myText.length()) {
-            int start = myText.indexOf(key, pos);
-            if(start == -1) break;
-            if(start + key.length() >= myText.length() - 1) break;
-            String next = myText.substring(start + key.length(), start + key.length() + 1);
-            listChar.add(next);
-            pos = start + key.length(); // + 1 might be useful in the future
-        }
-        return listChar;
+    @Override
+    public String toString() {
+        return "Markov Model order " + n;
     }
 
 }

@@ -28,29 +28,36 @@ public class MarkovRunnerWithInterface {
 		int size = 200;
 		int sd = 42;
 		
-        MarkovZero mz = new MarkovZero();
-        runModel(mz, st, size, sd);
-    
-        MarkovOne mOne = new MarkovOne();
-        runModel(mOne, st, size, sd);
-        
-        MarkovModel mThree = new MarkovModel(3);
-        runModel(mThree, st, size, sd);
-        
-        MarkovFour mFour = new MarkovFour();
-        runModel(mFour, st, size, sd);
+//        MarkovZero mz = new MarkovZero();
+//        runModel(mz, st, size, sd);
+//
+//        MarkovOne mOne = new MarkovOne();
+//        runModel(mOne, st, size, sd);
+//
+//        MarkovModel mThree = new MarkovModel(3);
+//        runModel(mThree, st, size, sd);
+//
+//        MarkovFour mFour = new MarkovFour();
+//        runModel(mFour, st, size, sd);
+
+		MarkovModel mFive = new MarkovModel(5);
+		EfficientMarkovModel emFiveEfficient = new EfficientMarkovModel(5);
+
+		runModel(mFive, st, size, sd);
+		runModel(emFiveEfficient, st, size, sd);
 
     }
 
 	public void testHashMap() {
 
+		EfficientMarkovModel emm = new EfficientMarkovModel(2);
 		String st = "yes-this-is-a-thin-pretty-pink-thistle";
-		//st = st.replace('\n', ' ');
+		st = st.replace('\n', ' ');
 		int size = 50;
 		int sd = 42;
 
-		EfficientMarkovModel emm = new EfficientMarkovModel(3);
 		runModel(emm,st, size, sd);
+		//emm.printHashMapInfo();
 	}
 
 	private void printOut(String s){
@@ -69,6 +76,7 @@ public class MarkovRunnerWithInterface {
 	}
 	public static void main(String[] args) {
 		MarkovRunnerWithInterface mri = new MarkovRunnerWithInterface();
+		//mri.testHashMap();
 		mri.testHashMap();
 	}
 	

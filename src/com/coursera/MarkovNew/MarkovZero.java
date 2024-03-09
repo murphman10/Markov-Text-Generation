@@ -7,14 +7,15 @@ import java.util.Random;
 public class MarkovZero extends AbstractMarkovModel {
 
     public MarkovZero() {
+        super(0);
         myRandom = new Random();
     }
-    public void setRandom(int seed){
-        myRandom = new Random(seed);
-    }
-    public void setTraining(String s){
-        myText = s.trim();
-    }
+//    public void setRandom(int seed){
+//        myRandom = new Random(seed);
+//    }
+//    public void setTraining(String s){
+//        myText = s.trim();
+//    }
     public String getRandomText(int numChars){
         if (myText == null){
             return "";
