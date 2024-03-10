@@ -74,11 +74,12 @@ public class EfficientMarkovModel extends AbstractMarkovModel {
         return sb.toString();
     }
     public void printHashMapInfo() {
+        int counter = 0;
         System.out.printf("Map size:\t%d\nMax size:\t%d\n", mapSize(), longestFollowsSize());
-//		for (String key : map.keySet()) {
-//			System.out.printf("Key:\t[%s]\tvalues: ", key);
-//			System.out.println(map.get(key));
-//		}
+		for (String key : map.keySet()) {
+			counter++;
+		}
+        System.out.println("Number of keys in the map: " + counter);
 
     }
 

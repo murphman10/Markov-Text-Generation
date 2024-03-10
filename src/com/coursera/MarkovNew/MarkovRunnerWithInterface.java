@@ -26,7 +26,7 @@ public class MarkovRunnerWithInterface {
 		String st = fr.asString();
 		st = st.replace('\n', ' ');
 		int size = 200;
-		int sd = 42;
+		int sd = 615;
 		
 //        MarkovZero mz = new MarkovZero();
 //        runModel(mz, st, size, sd);
@@ -43,8 +43,9 @@ public class MarkovRunnerWithInterface {
 		MarkovModel mFive = new MarkovModel(5);
 		EfficientMarkovModel emFiveEfficient = new EfficientMarkovModel(5);
 
-		runModel(mFive, st, size, sd);
+		//runModel(mFive, st, size, sd);
 		runModel(emFiveEfficient, st, size, sd);
+		emFiveEfficient.printHashMapInfo();
 
     }
 
@@ -77,7 +78,7 @@ public class MarkovRunnerWithInterface {
 	public static void main(String[] args) {
 		MarkovRunnerWithInterface mri = new MarkovRunnerWithInterface();
 		//mri.testHashMap();
-		mri.testHashMap();
+		mri.runMarkov();
 	}
 	
 }
