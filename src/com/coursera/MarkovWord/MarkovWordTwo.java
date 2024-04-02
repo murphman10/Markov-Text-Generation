@@ -28,12 +28,13 @@ public class MarkovWordTwo implements IMarkovModel {
 
     public String getRandomText(int numWords){
         StringBuilder sb = new StringBuilder();
-        int index = myRandom.nextInt(myText.length-1);  // random word to start with
+        int index = myRandom.nextInt(myText.length-2);  // random word to start with
         String key1 = myText[index];
         String key2 = myText[index + 1];
         sb.append(key1);
         sb.append(" ");
         sb.append(key2);
+        sb.append(" ");
         for(int k=0; k < numWords-1; k++){
             ArrayList<String> follows = getFollows(key1, key2);
             if (follows.size() == 0) {
@@ -62,11 +63,11 @@ public class MarkovWordTwo implements IMarkovModel {
     }
     private ArrayList<String> getFollows(String key1, String key2) {
         ArrayList<String> listChar = new ArrayList<>();
-        int index = indexOf(myText, key1, key2, 0);
-        while (index != -1) {
-             listChar.add(myText[index + 1]);
-             index = indexOf(myText,key1, key2, index+1);
-
+        for(int i = 0; i < myText.length - 2; i++) {
+            if(myText[i].equals(key1) && myText[i+1].equals(key2)) {
+                String next = myText[i+2];
+                listChar.add(next);
+            }
         }
         return listChar;
     }

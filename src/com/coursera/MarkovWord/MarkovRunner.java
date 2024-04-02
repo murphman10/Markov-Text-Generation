@@ -63,7 +63,7 @@ public class MarkovRunner {
 
     public static void main(String[] args) {
         MarkovRunner mr = new MarkovRunner();
-        mr.runMarkov();
+        mr.runMarkovTwo();
     }
 
 }
