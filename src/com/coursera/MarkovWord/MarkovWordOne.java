@@ -66,7 +66,7 @@ public class MarkovWordOne implements IMarkovModel {
 			if(start + key.length() >= myText.length - 1) break;
 			String next = myText[start + 1]; //using 1 word to predict the next word
 			listChar.add(next);
-			pos = start + key.length();// + 1; //might be useful in the future
+			pos = start + 1;
 		}
 		return listChar;
 	}
