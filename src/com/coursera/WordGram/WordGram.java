@@ -44,22 +44,15 @@ public class WordGram {
     }
 
     public WordGram shiftAdd(String word) {
+
         for(int i = 0; i < myWords.length - 1; i++) {
             myWords[i] = myWords[i+1];
         }
         myWords[myWords.length - 1] = word;
 
-        for (String j : myWords) {
-            System.out.print(j + " ");
-        }
         WordGram out = new WordGram(myWords, 0, myWords.length);
-        // shift all words one towards 0 and add word at the end. 
-        // you lose the first word
-        // TODO: Complete this method
 
         return out;
     }
-    //word = yes
-    //myWords = {this is a test}
 
 }
