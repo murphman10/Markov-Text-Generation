@@ -1,4 +1,4 @@
-package com.coursera.MarkovWord;
+package com.coursera.WordGram;
 
 import com.coursera.Interfaces.IMarkovModel;
 import com.coursera.WordGram.WordGram;
@@ -49,7 +49,7 @@ public class EfficientMarkovWord implements IMarkovModel {
         StringBuilder sb = new StringBuilder();
         int index = myRandom.nextInt(myText.length-myOrder);
         WordGram key = new WordGram(myText, index, myOrder);
-        sb.append(key);
+        sb.append(key.toString());
         sb.append(" ");
         for(int i=0; i < numWords-myOrder; i++) {
             ArrayList<String> follows = getFollows(key);
@@ -90,5 +90,24 @@ public class EfficientMarkovWord implements IMarkovModel {
 //
 //        return -1;
 //    }
+    public void printHashMapInfo() {
+
+        System.out.println("It has " +  map.size() + " keys in the HashMap");
+        int maxSize = 0;
+        for (WordGram wg : map.keySet()) {
+            maxSize = Math.max(maxSize, map.get(wg).size());
+    //			System.out.printf("Key:\t[%s]\tvalues: ", wg);
+    //			System.out.println(myMap.get(wg));
+        }
+        System.out.println("The maximum number of elements following a key is " + maxSize);
+
+        System.out.println("Keys with the maximum size value: ");
+        for (WordGram wg : map.keySet()) {
+            if (map.get(wg).size()==maxSize) {
+                System.out.print(wg);
+                System.out.println(" (The follow words: " + map.get(wg) + ")");
+            }
+        }
+    }
 
 }

@@ -34,8 +34,18 @@ public class MarkovRunner {
         String st = fr.asString(); 
         st = st.replace('\n', ' '); 
         MarkovWord markovWord = new MarkovWord(3);
-        runModel(markovWord, st, 200, 643);
-    } 
+        runModel(markovWord, st, 200, 621);
+    }
+
+    public void runEffMarkov() {
+        FileResource fr = new FileResource();
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+//    	String st = "this is a test yes this is really a test yes a test this is wow";
+        EfficientMarkovWord markov = new EfficientMarkovWord(2);
+        runModel(markov, st, 200, 65);
+        markov.printHashMapInfo();
+    }
 
     private void printOut(String s){
         String[] words = s.split("\\s+");
@@ -54,7 +64,7 @@ public class MarkovRunner {
 
     public static void main(String[] args) {
         MarkovRunner mr = new MarkovRunner();
-        mr.runMarkov();
+        mr.runEffMarkov();
     }
 
 }

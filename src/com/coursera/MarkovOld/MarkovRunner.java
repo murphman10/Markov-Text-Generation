@@ -2,12 +2,13 @@ package com.coursera.MarkovOld;
 
 import edu.duke.*;
 public class MarkovRunner {
+    //int order;
     public void runMarkovZero() {
         FileResource fr = new FileResource();
         String st = fr.asString();
         st = st.replace('\n', ' ');
         MarkovZero markov = new MarkovZero();
-        markov.setRandom(88);
+        markov.setRandom(1024);
         markov.setTraining(st);
         for(int k=0; k < 3; k++){
             String text = markov.getRandomText(500);
@@ -20,7 +21,7 @@ public class MarkovRunner {
         String st = fr.asString();
         st = st.replace('\n', ' ');
         MarkovOne markov = new MarkovOne();
-        markov.setRandom(273);
+        markov.setRandom(365);
         markov.setTraining(st);
         for (int k = 0; k < 3; k++) {
             String text = markov.getRandomText(500);
@@ -33,7 +34,7 @@ public class MarkovRunner {
         String st = fr.asString();
         st = st.replace('\n', ' ');
         MarkovFour markov = new MarkovFour();
-        markov.setRandom(371);
+        markov.setRandom(715);
         markov.setTraining(st);
         for (int k = 0; k < 3; k++) {
             String text = markov.getRandomText(500);
@@ -46,9 +47,9 @@ public class MarkovRunner {
         String st = fr.asString();
         st = st.replace('\n', ' ');
         MarkovModel markov = new MarkovModel();
-        markov.setRandom(365);
+        markov.setRandom(953);
         markov.setTraining(st);
-        markov.setN(8);
+        markov.setN(7);
         for (int k = 0; k < 3; k++) {
             String text = markov.getRandomText(500);
             printOut(text);
@@ -72,10 +73,8 @@ public class MarkovRunner {
 
     public static void main(String[] args) {
         MarkovRunner mr = new MarkovRunner();
-        mr.runMarkovZero();
-        mr.runMarkovOne();
-        mr.runMarkovFour();
         mr.runMarkovModel();
+
     }
 
 }
